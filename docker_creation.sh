@@ -28,12 +28,13 @@ then
 	echo "1 - ROS1 image"
 	echo "2 - ROS2 image"
 	echo "3 - PX4 stack with ROS1 and ROS2"
-	echo "4 - Robotics Lab ROS1"
+	echo "4 - ROS VINS-Fusion"
 	echo "5 - ROS1 - RTABMAP"
 	echo "6 - ROS - melodic - KIMERA"
 	echo "7 - ROS - melodic"
 	echo "8 - PDT - ws"
 	echo "9 - Ubuntu 18.04"
+	echo "10 - PX4 ekf2 custom"
 	
 	read in
 	if [[ ($in -eq "1") ]]
@@ -50,16 +51,16 @@ then
 			im_name=px4io/px4-dev-ros2-foxy
 	elif [[ ($in -eq "4") ]]
 	then
-			echo "Selected Robotics Lab ROS1 image"
-			im_name=jocacace/rl_ros1
+			echo "Selected VINS-Fusion "
+			im_name=docker push vinsco30/vins-img-melodic:latest
 	elif [[ ($in -eq "5") ]]
 	then
 			echo "Selected ROS1 and RTABMAP image"
 			im_name=introlab3it/rtabmap_ros:noetic-latest	
 	elif [[ ($in -eq "6") ]]
 	then
-			echo "Selected ROS melodic and Kimera image"
-			im_name=vinsco30/kimera-ros-melodic
+			echo "PX4 dependencies without ROS2"
+			im_name=px4io/px4-dev-base-jammy:latest
 	elif [[ ($in -eq "7") ]]
 	then
 			echo "Selected ROS melodic"
@@ -72,6 +73,10 @@ then
 	then
 			echo "Selected Ubuntu18.04"
 			im_name=vinsco30/orb-slam3-melodic:latest
+	elif [[ ($in -eq "10") ]]
+	then
+			echo "PX4 ekf2 custom"
+			im_name=ekf2-custom-new:latest
 	else
 			im_name=$in
 	fi
